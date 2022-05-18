@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breaking Bad</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/cda7ff839c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar is-success is-fixed-top">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="">
+                    <img src="breaking-bad-logo-vector.png">
+                </a>
+            </div>
+            <div class="navbar-item">
+                <div class="field">
+                    <p class="control has-icons-right">
+                      <input class="input" type="text" name="buscar" id="buscar" placeholder="Escribe un nombre">
+                      <span class="icon is-small is-right">
+                        <i class="fa fa-search"></i>
+                      </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="navbar-item">
+                <div class="select">
+                <select name="character-status" id="character-status">
+                        <option value="">Todos</option>
+                        <option value="Alive">Vivo</option>
+                        <option value="Deceased">Fallecido</option>
+                        <option value="Presumed dead">Presuntamente muerto</option>
+                        <option value="Unknown">Desconocido</option>                        
+                    </select>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <button class="button is-success is-light" id="reset">Reiniciar</button>
+                        <button class="button is-warning is-light" id="favoritos"><span class="icon"><i class="fa fa-star"></i></span><span>Mis favoritos</span></button>
+                        <button class="button is-info is-light" id="ascendente">Ascendente</button>
+                        <button class="button is-info is-light" id="descendente">Descendente</button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <section class="section">
+        <div class="container">
+            <div class="columns is-multiline" id="listado">
+            </div>
+        </div>
+    </section>
+    <aside id="mis-favoritos" class="is-hidden">
+        <h2 class="is-size-5 mb-3 has-text-weight-semibold has-text-centered">Favoritos</h2>
+        <div id="listado-favoritos">
+
+        </div>
+    </aside>
+    <div class="modal" id="popup">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title" id="character-name"></p>
+            <button id="delete" class="delete" aria-label="close"></button>
+          </header>
+          <section class="modal-card-body">
+            <div class="columns is-vcentered">
+                <div class="column is-7">
+                    <figure class="image">
+                        <image src="" id="character-img"></image>
+                    </figure>
+                </div>
+                <div class="column">
+                    <h2 class="is-size-5 has-text-weight-semibold">Personaje: <span id="character-number"></span></h2>
+                    <p id="character-tags"></p>
+
+                    <p class="mt-5"><b>Cumpleaños:</b> <span id="character-birthday"></span></p>
+                    <p><b>Apodo:</b> <span id="character-nickname"></span></p>
+                </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
