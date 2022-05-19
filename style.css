@@ -1,28 +1,11 @@
-.Alive{
-  background-color: #509218 !important;
-  color: #ffffff !important;
-}
-.Deceased{
-  background-color: #662168 !important;
-  color: #ffffff !important;
-}
-.Presumed{
-  background-color: #7DBAF2 !important;
-  color: #ffffff !important;
-}
-.Unknown{
-  background-color: #ABABB8 !important;
-  color: #ffffff !important;
+#character-img {
+  border-radius: 25px;
 }
 
 .character-number{
-      position: absolute;
-      right: -5px;
-      top: 10px;
-      background: black;
-      color: white;
-      padding: 1px 5px;
+  font-family: 'Comfortaa', cursive;
 }
+
 .button.is-fav{
   position: absolute;
   top: 10px;
@@ -31,10 +14,22 @@
 }
 #mis-favoritos{
   position: fixed;
-  right: 0;
+  right: 100px;
   bottom: 0;
-  top:56px;
-  background-color: #e2e2e2;
-  width: 300px;
+  top:60px;
+  background-color: white;
+  border: solid #eeeeee 2px;
+  border-radius: 10px;
+  width: 200px;
+  height: 300px;
   z-index: 8;
+}
+
+h2, p{
+  font-family: 'Comfortaa', cursive;
+}
+
+.section {
+  background-color: #6E6E6E;
+  text-align: center;
 }

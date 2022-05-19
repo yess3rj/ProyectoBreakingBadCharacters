@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/cda7ff839c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <nav class="navbar is-success is-fixed-top">
+        <nav class="navbar is-black is-fixed-top">
             <div class="navbar-brand">
                 <a class="navbar-item" href="">
                     <img src="breaking-bad-logo-vector.png">
@@ -20,7 +21,7 @@
             <div class="navbar-item">
                 <div class="field">
                     <p class="control has-icons-right">
-                      <input class="input" type="text" name="buscar" id="buscar" placeholder="Escribe un nombre">
+                      <input class="input is-rounded is-info" type="text" name="search" id="search" placeholder="Escribe un nombre...">
                       <span class="icon is-small is-right">
                         <i class="fa fa-search"></i>
                       </span>
@@ -29,9 +30,9 @@
             </div>
 
             <div class="navbar-item">
-                <div class="select">
+                <div class="select is-info is-rounded">
                 <select name="character-status" id="character-status">
-                        <option value="">Todos</option>
+                        <option value="">Estatus</option>
                         <option value="Alive">Vivo</option>
                         <option value="Deceased">Fallecido</option>
                         <option value="Presumed dead">Presuntamente muerto</option>
@@ -42,16 +43,16 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <button class="button is-success is-light" id="reset">Reiniciar</button>
+                        <button class="button is-info is-light" id="ascendente">A-Z</button>
+                        <button class="button is-info is-light" id="descendente">Z-A</button>
                         <button class="button is-warning is-light" id="favoritos"><span class="icon"><i class="fa fa-star"></i></span><span>Mis favoritos</span></button>
-                        <button class="button is-info is-light" id="ascendente">Ascendente</button>
-                        <button class="button is-info is-light" id="descendente">Descendente</button>
+                        <button class="button is-success is-light" id="reset">Reiniciar</button>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    <section class="section">
+    <section class="section" style="padding-top: 100px;">
         <div class="container">
             <div class="columns is-multiline" id="listado">
             </div>
@@ -59,9 +60,7 @@
     </section>
     <aside id="mis-favoritos" class="is-hidden">
         <h2 class="is-size-5 mb-3 has-text-weight-semibold has-text-centered">Favoritos</h2>
-        <div id="listado-favoritos">
-
-        </div>
+        <div id="listado-favoritos"></div>
     </aside>
     <div class="modal" id="popup">
         <div class="modal-background"></div>
@@ -78,11 +77,13 @@
                     </figure>
                 </div>
                 <div class="column">
-                    <h2 class="is-size-5 has-text-weight-semibold">Personaje: <span id="character-number"></span></h2>
+                    <h2 class="is-size-5 has-text-weight-semibold">Personaje <span id="character-number"></span></h2>
                     <p id="character-tags"></p>
 
                     <p class="mt-5"><b>Cumpleaños:</b> <span id="character-birthday"></span></p>
                     <p><b>Apodo:</b> <span id="character-nickname"></span></p>
+
+                    <p><b>Temporadas:</b> <span id="appearance"></span></p>
                 </div>
             </div>
           </section>

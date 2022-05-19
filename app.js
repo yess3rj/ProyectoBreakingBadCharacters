@@ -21,7 +21,7 @@ getFavoritos();
 document.getElementById("reset").addEventListener("click",getFullList);
 
 document.getElementById("favoritos").addEventListener("click", function(){
-    document.getElementById("mis-favoritos").classList.toggle("is-hidden");
+document.getElementById("mis-favoritos").classList.toggle("is-hidden");
 })
 
 document.getElementById("character-status").addEventListener("change", function(evt){
@@ -35,13 +35,13 @@ document.getElementById("character-status").addEventListener("change", function(
   }
 });
 
-document.querySelector("#buscar").addEventListener("keyup",function(evt){
-  if(evt.target.value.length>=3){
+document.querySelector("#search").addEventListener("keyup",function(evt){
+  if(evt.target.value.length>=2){
       characters2 = characters2.filter((character) => 
               character.name.toLowerCase().includes(evt.target.value.toLowerCase())
-      )
+    )
 
-      listCharacters(characters2);
+    listCharacters(characters2);
   }
 
 });
@@ -88,6 +88,8 @@ function listCharacters(characters){
         card.dataset.char_id=characters[i].char_id;
         card.dataset.nickname=characters[i].nickname;
         card.dataset.status = characters[i].status;
+        card.dataset.birthday = characters[i].birthday;
+        card.dataset.appearance = characters[i].appearance;
         card.dataset.img = characters[i].img;
        
 
@@ -144,7 +146,7 @@ function listCharacters(characters){
 
         cardContent.append(hTitle);
 
-        let tipoArreglo=characters[i].status;//Arreglo
+        /*let tipoArreglo=characters[i].status;//Arreglo
         card.dataset.status= characters[i].status;
 
         for(var j = 0 ; j<tipoArreglo.length;j++){
@@ -154,12 +156,12 @@ function listCharacters(characters){
           var micolor= getColor(tipoArreglo[j])
           tSpan.classList.add(micolor);
           cardContent.append(tSpan);
-      }
+      }*/
 
-      let p1 = document.createElement("p");
+      /*let p1 = document.createElement("p");
       p1.classList.add("character-number");
       p1.innerHTML="<b>Personaje "+characters[i].char_id+"</b>";
-      cardContent.append(p1);
+      cardContent.append(p1);*/
 
   
 
@@ -183,47 +185,24 @@ function abrirPopup(evt){
     document.querySelector("#character-tags").append(info.status);
     console.log("status", info.status);
     
-    /* var tipoArreglo = info.status.split("");
+    var tipoArreglo = info.appearance.split(",");
     for(var j = 0 ; j<tipoArreglo.length;j++){
         let tSpan =  document.createElement("span");
         tSpan.classList.add("tag", "mr-1");
         tSpan.innerText=tipoArreglo[j];
 
-        var color= getColor(tipoArreglo[j])
-        
-        tSpan.classList.add(color);
 
         document.querySelector("#character-tags").append(tSpan);
-    } */
+    }
 
     document.querySelector("#character-name").innerHTML= info.name;
     document.querySelector("#character-img").src= info.img;
     document.querySelector("#character-number").innerHTML= info.char_id;
     document.querySelector("#character-nickname").innerHTML= info.nickname;
     document.querySelector("#character-birthday").innerHTML= info.birthday;
+    
 
     document.querySelector("#popup").classList.toggle("is-active");
 }
 
-function getColor(status){
-  var colorClass;
-  switch(status){
-      case "Alive":{
-         colorClass="Alive";
-         break;
-      }
-      case "Deceased":{
-         colorClass="Deceased";
-         break;
-      }
-      case "Presumed dead":{
-         colorClass="Presumed";
-         break;
-     }
-     case "Unknown":{
-          colorClass="Unknown";
-          break;
-      }
-  }
-  return colorClass;
-}
+
