@@ -11,8 +11,6 @@ window.onload = function(){
     });
 };
 
-getFavoritos();
-
   document.getElementById("delete").addEventListener("click", function(){
   document.querySelector("#popup").classList.toggle("is-active");
   });
@@ -20,17 +18,14 @@ getFavoritos();
 
 document.getElementById("reset").addEventListener("click",getFullList);
 
-document.getElementById("favoritos").addEventListener("click", function(){
-document.getElementById("mis-favoritos").classList.toggle("is-hidden");
-})
 
 document.getElementById("character-status").addEventListener("change", function(evt){
-  var tipo_buscado = evt.target.value;
+  var estatus = evt.target.value;
 
-  if(tipo_buscado==""){
+  if(estatus==""){
       listCharacters(characters2);
   }else{
-       characters2 = characters2.filter((character) => character.status.includes(tipo_buscado))
+       characters2 = characters.filter((character) => character.status.includes(estatus))
       listCharacters(characters2);
   }
 });
@@ -62,19 +57,7 @@ function getFullList()
     listCharacters(characters2);
 }
 
-function getFavoritos(){
-    document.querySelector("#listado-favoritos").innerHTML='';
-    const fav = sessionStorage.getItem("favoritos");
-    var listadoFavoritos = JSON.parse(fav);
-    if (fav && fav.length){
 
-        for(var i=0;i<listadoFavoritos.length;i++){
-            document.querySelector("#listado-favoritos").innerHTML+="<div class='has-text-centered'>"+listadoFavoritos[i].name+"</div>"
-        }
-    }
-}
-
-/*Funcion que dibuja un array*/
 function listCharacters(characters){
     document.getElementById("listado").innerHTML="";
 
@@ -89,39 +72,12 @@ function listCharacters(characters){
         card.dataset.nickname=characters[i].nickname;
         card.dataset.status = characters[i].status;
         card.dataset.birthday = characters[i].birthday;
-        card.dataset.appearance = characters[i].appearance;
+        card.dataset.appearance = characters[i].appearance.join(", ");
         card.dataset.img = characters[i].img;
+        card.dataset.portrayed = characters[i].portrayed;
        
 
         card.addEventListener("click", abrirPopup)
-
-        var buttonFav = document.createElement("button");
-        buttonFav.dataset.char_id=characters[i].char_id;
-        buttonFav.classList.add("button","is-warning", "is-fav");
-        buttonFav.innerHTML="<span class='icon'><i class='fa fa-star'> </span>"
-        buttonFav.addEventListener("click", function(evt){
-            evt.stopPropagation();
-            var id = parseInt(evt.currentTarget.dataset.char_id);
-            console.log(evt.currentTarget.dataset.char_id);
-            
-            var resultados = characters.filter((character) =>
-                character.char_id === id
-            );
-
-            var listadoFavoritos = JSON.parse(sessionStorage.getItem("favoritos"));
-            
-            if(listadoFavoritos == null){
-                sessionStorage.setItem("favoritos",JSON.stringify(resultados));
-            }else{
-                listadoFavoritos.push(resultados[0]);
-                sessionStorage.setItem("favoritos",JSON.stringify(listadoFavoritos));
-            }
-            getFavoritos();
-            console.log(listadoFavoritos);
-
-        });
-        
-        card.append(buttonFav);
 
 
 
@@ -146,22 +102,6 @@ function listCharacters(characters){
 
         cardContent.append(hTitle);
 
-        /*let tipoArreglo=characters[i].status;//Arreglo
-        card.dataset.status= characters[i].status;
-
-        for(var j = 0 ; j<tipoArreglo.length;j++){
-          let tSpan =  document.createElement("span");
-          tSpan.classList.add("tag", "mr-1");
-          tSpan.innerText=tipoArreglo[j];
-          var micolor= getColor(tipoArreglo[j])
-          tSpan.classList.add(micolor);
-          cardContent.append(tSpan);
-      }*/
-
-      /*let p1 = document.createElement("p");
-      p1.classList.add("character-number");
-      p1.innerHTML="<b>Personaje "+characters[i].char_id+"</b>";
-      cardContent.append(p1);*/
 
   
 
@@ -182,8 +122,8 @@ function abrirPopup(evt){
   
     document.querySelector("#character-tags").innerHTML='';
 
-    document.querySelector("#character-tags").append(info.status);
-    console.log("status", info.status);
+    document.querySelector("#character-tags").append(info.appearance);
+    
     
     var tipoArreglo = info.appearance.split(",");
     for(var j = 0 ; j<tipoArreglo.length;j++){
@@ -192,14 +132,15 @@ function abrirPopup(evt){
         tSpan.innerText=tipoArreglo[j];
 
 
-        document.querySelector("#character-tags").append(tSpan);
     }
 
     document.querySelector("#character-name").innerHTML= info.name;
     document.querySelector("#character-img").src= info.img;
     document.querySelector("#character-number").innerHTML= info.char_id;
+    document.querySelector("#status").innerHTML= info.status;
     document.querySelector("#character-nickname").innerHTML= info.nickname;
     document.querySelector("#character-birthday").innerHTML= info.birthday;
+    document.querySelector("#character-portrayed").innerHTML= info.portrayed;
     
 
     document.querySelector("#popup").classList.toggle("is-active");
